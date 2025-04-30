@@ -1,0 +1,11 @@
+Se eu fosse responsável por propor uma melhoria na segurança do algoritmo SHA-256, com foco em dificultar a decodificação mediante força bruta, eu consideraria a implementação de um salting ou aumento de iterações.
+
+Salting (Adição de um sal único ao cálculo do hash): O sal seria uma string aleatória única adicionada aos dados antes de calcular o hash. Isso garantiria que, mesmo que duas entradas idênticas sejam fornecidas, os hashes resultantes seriam diferentes, devido ao sal exclusivo associado a cada entrada. No caso de senhas ou dados sensíveis, isso tornaria o ataque de força bruta mais difícil, pois atacantes precisariam de um sal específico para cada entrada para realizar ataques simultâneos.
+
+Aumento de Iterações (Função de Iteração de Hash, como PBKDF2 ou bcrypt): Embora o SHA-256 seja uma função de hash robusta, ela foi projetada para ser rápida, o que pode ser uma desvantagem em ataques de força bruta, onde a rapidez na geração de hashes pode ser explorada para testar muitas combinações rapidamente. Uma possível melhoria seria aplicar uma função de iteração (como PBKDF2, bcrypt ou Argon2), que multiplica o tempo necessário para calcular o hash através de várias iterações. Isso aumentaria exponencialmente o tempo necessário para realizar uma tentativa de força bruta, dificultando ataques, pois o atacante precisaria realizar muitas iterações para cada tentativa, tornando o ataque muito mais lento.
+
+Justificativa:
+
+O salting torna impossível que um atacante use tabelas pré-computadas (como as tabelas rainbow) para realizar ataques de força bruta, pois o sal único para cada entrada garante que até entradas idênticas resultem em hashes diferentes.
+
+O aumento de iterações torna o algoritmo mais lento e computacionalmente intensivo, o que aumenta o custo de um ataque de força bruta. Isso adiciona um fator de resistência, tornando o processo de tentativa e erro (força bruta) mais demorado e caro para um atacante.
